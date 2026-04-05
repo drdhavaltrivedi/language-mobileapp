@@ -65,39 +65,39 @@ export default function PlaylistDetail({
   }
 
   return (
-    <div className="max-w-3xl mx-auto px-8 py-10">
+    <div className="max-w-3xl mx-auto px-4 sm:px-8 py-6 sm:py-10">
       <button onClick={onBack} className="flex items-center gap-2 text-slate-500 hover:text-slate-900 text-sm mb-6 transition-colors">
         <ArrowLeft className="w-4 h-4" /> Back to Playlists
       </button>
 
-      <div className="flex items-start justify-between mb-8">
+      <div className="flex flex-col md:flex-row md:items-start justify-between gap-4 mb-8">
         <div className="flex items-center gap-4">
           <div
-            className="w-14 h-14 rounded-2xl flex items-center justify-center"
+            className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl flex items-center justify-center shrink-0"
             style={{ backgroundColor: playlist.cover_color + '20', color: playlist.cover_color }}
           >
-            <BookOpen className="w-7 h-7" />
+            <BookOpen className="w-6 h-6 sm:w-7 sm:h-7" />
           </div>
-          <div>
-            <h1 className="text-2xl font-bold text-slate-900">{playlist.name}</h1>
+          <div className="min-w-0">
+            <h1 className="text-xl sm:text-2xl font-bold text-slate-900 truncate">{playlist.name}</h1>
             <p className="text-slate-500 text-sm mt-0.5">
               {lang?.flag} {lang?.name} · {items.length} item{items.length !== 1 ? 's' : ''}
             </p>
-            {playlist.description && <p className="text-slate-400 text-xs mt-1">{playlist.description}</p>}
+            {playlist.description && <p className="text-slate-400 text-xs mt-1 line-clamp-1">{playlist.description}</p>}
           </div>
         </div>
 
-        <div className="flex gap-2">
+        <div className="flex gap-2 w-full md:w-auto">
           <button
             onClick={() => setShowAdd(!showAdd)}
-            className="flex items-center gap-2 px-4 py-2.5 border border-slate-200 text-slate-700 text-sm font-medium rounded-xl hover:bg-slate-50 transition-colors"
+            className="flex-1 md:flex-none flex items-center justify-center gap-2 px-4 py-2.5 border border-slate-200 text-slate-700 text-sm font-medium rounded-xl hover:bg-slate-50 transition-colors"
           >
-            <Plus className="w-4 h-4" /> Add Items
+            <Plus className="w-4 h-4" /> Add <span className="hidden sm:inline">Items</span>
           </button>
           <button
             onClick={onStartPractice}
             disabled={items.length === 0}
-            className="flex items-center gap-2 px-4 py-2.5 bg-sky-500 hover:bg-sky-600 disabled:opacity-50 text-white text-sm font-semibold rounded-xl transition-colors"
+            className="flex-1 md:flex-none flex items-center justify-center gap-2 px-4 py-2.5 bg-sky-500 hover:bg-sky-600 disabled:opacity-50 text-white text-sm font-semibold rounded-xl transition-colors"
           >
             <Play className="w-4 h-4 fill-white" /> Practice
           </button>

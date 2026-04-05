@@ -92,7 +92,7 @@ export default function Discovery({ userItems, onAddToLibrary }: DiscoveryProps)
   const languages = [...new Set(DISCOVERY_ITEMS.map((i) => i.language))];
 
   return (
-    <div className="max-w-5xl mx-auto px-8 py-10">
+    <div className="max-w-5xl mx-auto px-4 sm:px-8 py-6 sm:py-10">
       <div className="mb-8">
         <div className="flex items-center gap-2 mb-1">
           <Compass className="w-5 h-5 text-sky-500" />
@@ -101,33 +101,35 @@ export default function Discovery({ userItems, onAddToLibrary }: DiscoveryProps)
         <p className="text-slate-500">Curated phrases to expand beyond your comfort zone. Add anything to your library.</p>
       </div>
 
-      <div className="flex items-center gap-3 mb-8">
+      <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-8">
         <div className="flex items-center gap-1.5 text-xs font-medium text-slate-500">
           <TrendingUp className="w-3.5 h-3.5" />
           Filter:
         </div>
-        <select
-          value={filterLang}
-          onChange={(e) => setFilterLang(e.target.value)}
-          className="px-3.5 py-2 border border-slate-200 rounded-xl text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-sky-500 bg-white"
-        >
-          <option value="all">All languages</option>
-          {languages.map((code) => {
-            const l = LANGUAGES.find((x) => x.code === code);
-            return <option key={code} value={code}>{l?.flag} {l?.name ?? code}</option>;
-          })}
-        </select>
-        <select
-          value={filterDiff}
-          onChange={(e) => setFilterDiff(e.target.value)}
-          className="px-3.5 py-2 border border-slate-200 rounded-xl text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-sky-500 bg-white"
-        >
-          <option value="all">All levels</option>
-          {Object.entries(DIFFICULTY_LABELS).map(([val, label]) => (
-            <option key={val} value={val}>{label}</option>
-          ))}
-        </select>
-        <span className="text-xs text-slate-400 ml-auto">{recommended.length} available</span>
+        <div className="flex gap-2 flex-1">
+          <select
+            value={filterLang}
+            onChange={(e) => setFilterLang(e.target.value)}
+            className="flex-1 sm:flex-none px-3.5 py-2 border border-slate-200 rounded-xl text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-sky-500 bg-white"
+          >
+            <option value="all">All languages</option>
+            {languages.map((code) => {
+              const l = LANGUAGES.find((x) => x.code === code);
+              return <option key={code} value={code}>{l?.flag} {l?.name ?? code}</option>;
+            })}
+          </select>
+          <select
+            value={filterDiff}
+            onChange={(e) => setFilterDiff(e.target.value)}
+            className="flex-1 sm:flex-none px-3.5 py-2 border border-slate-200 rounded-xl text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-sky-500 bg-white"
+          >
+            <option value="all">All levels</option>
+            {Object.entries(DIFFICULTY_LABELS).map(([val, label]) => (
+              <option key={val} value={val}>{label}</option>
+            ))}
+          </select>
+          <span className="hidden sm:inline text-xs text-slate-400 ml-auto">{recommended.length} available</span>
+        </div>
       </div>
 
       {recommended.length === 0 ? (
@@ -137,7 +139,7 @@ export default function Discovery({ userItems, onAddToLibrary }: DiscoveryProps)
           <p className="text-slate-500 text-sm">You have added all available items in this filter. Try a different language or difficulty.</p>
         </div>
       ) : (
-        <div className="grid grid-cols-2 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {recommended.map((item) => {
             const key = item.content;
             const isAdded = addedIds.has(key);

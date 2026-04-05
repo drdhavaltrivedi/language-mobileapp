@@ -19,7 +19,7 @@ export default function Sidebar({ currentPage, onNavigate, onSignOut, userEmail 
   const activePage = currentPage === 'playlist-detail' ? 'playlists' : currentPage === 'practice' ? 'playlists' : currentPage;
 
   return (
-    <aside className="w-64 bg-white border-r border-slate-200 flex flex-col h-screen sticky top-0 shrink-0">
+    <aside className="hidden lg:flex w-64 bg-white border-r border-slate-200 flex flex-col h-screen sticky top-0 shrink-0">
       <div className="px-6 py-5 border-b border-slate-100">
         <div className="flex items-center gap-2.5">
           <div className="w-8 h-8 bg-sky-500 rounded-lg flex items-center justify-center">

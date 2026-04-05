@@ -140,14 +140,14 @@ export default function PracticeSession({ playlist, playlistItems, onClose, onCo
         />
       </div>
 
-      <div className="flex-1 flex flex-col items-center justify-center px-8 py-10 max-w-2xl mx-auto w-full">
-        <div className="w-full bg-white border border-slate-200 rounded-3xl p-10 mb-8 text-center shadow-sm">
+      <div className="flex-1 flex flex-col items-center justify-center px-4 sm:px-8 py-6 sm:py-10 max-w-2xl mx-auto w-full overflow-y-auto">
+        <div className="w-full bg-white border border-slate-200 rounded-3xl p-6 sm:p-10 mb-8 text-center shadow-sm">
           <div className="mb-3">
             <span className="text-xs font-semibold uppercase tracking-wider text-slate-400">Shadow this</span>
           </div>
 
           <div className="mb-2">
-            <p className="text-3xl font-bold text-slate-900 leading-snug">{currentItem.content}</p>
+            <p className="text-2xl sm:text-3xl font-bold text-slate-900 leading-snug break-words">{currentItem.content}</p>
           </div>
 
           {currentItem.pronunciation && (
@@ -184,15 +184,15 @@ export default function PracticeSession({ playlist, playlistItems, onClose, onCo
         {revealed && (
           <div>
             <p className="text-center text-xs text-slate-400 mb-4 font-medium uppercase tracking-wide">How did you do?</p>
-            <div className="grid grid-cols-4 gap-3">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3">
               {RATING_CONFIG.map(({ key, label, color, bg, description }) => (
                 <button
                   key={key}
                   onClick={() => handleRate(key)}
-                  className={`flex flex-col items-center py-3 px-4 border rounded-2xl transition-colors ${bg}`}
+                  className={`flex flex-col items-center justify-center py-2.5 sm:py-3 px-2 sm:px-4 border rounded-2xl transition-colors ${bg}`}
                 >
                   <span className={`text-sm font-bold ${color}`}>{label}</span>
-                  <span className="text-xs text-slate-400 mt-0.5">{description}</span>
+                  <span className="text-[10px] sm:text-xs text-slate-400 mt-0.5">{description}</span>
                 </button>
               ))}
             </div>

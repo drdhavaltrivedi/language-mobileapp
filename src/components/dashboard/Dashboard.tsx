@@ -46,21 +46,21 @@ export default function Dashboard({ playlists, sessions, totalItems, onNavigate,
   }
 
   return (
-    <div className="max-w-5xl mx-auto px-8 py-10">
+    <div className="max-w-5xl mx-auto px-4 sm:px-8 py-6 sm:py-10">
       <div className="mb-8">
         <h1 className="text-2xl font-bold text-slate-900">Good {greeting()}</h1>
         <p className="text-slate-500 mt-0.5">Ready to practice? Your next session awaits.</p>
       </div>
 
-      <div className="grid grid-cols-4 gap-4 mb-10">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
         <StatCard icon={<Flame className="w-5 h-5 text-orange-500" />} value={`${stats.streak}d`} label="Streak" bg="bg-orange-50" />
         <StatCard icon={<Clock className="w-5 h-5 text-sky-500" />} value={`${stats.todayMinutes}m`} label="Today" bg="bg-sky-50" />
         <StatCard icon={<BookOpen className="w-5 h-5 text-emerald-500" />} value={stats.totalItems.toString()} label="Items" bg="bg-emerald-50" />
         <StatCard icon={<TrendingUp className="w-5 h-5 text-amber-500" />} value={`${stats.accuracy}%`} label="Accuracy" bg="bg-amber-50" />
       </div>
 
-      <div className="grid grid-cols-3 gap-8">
-        <div className="col-span-2 space-y-8">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="lg:col-span-2 space-y-8">
           <section>
             <div className="flex items-center justify-between mb-4">
               <h2 className="text-base font-semibold text-slate-900">Your Playlists</h2>
@@ -81,7 +81,7 @@ export default function Dashboard({ playlists, sessions, totalItems, onNavigate,
                 </button>
               </div>
             ) : (
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {featuredPlaylists.map((pl) => (
                   <div key={pl.id} className="bg-white border border-slate-200 rounded-2xl p-4 hover:border-slate-300 transition-colors group">
                     <div className="flex items-start justify-between mb-3">

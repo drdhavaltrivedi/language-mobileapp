@@ -11,6 +11,7 @@ import PlaylistDetail from './components/playlists/PlaylistDetail';
 import PracticeSession from './components/practice/PracticeSession';
 import Library from './components/library/Library';
 import Discovery from './components/discovery/Discovery';
+import BottomNav from './components/layout/BottomNav';
 import { Page, Playlist, PlaylistItem, LanguageItem, Rating } from './lib/types';
 
 export default function App() {
@@ -120,7 +121,7 @@ export default function App() {
         />
       )}
 
-      <main className="flex-1 overflow-y-auto min-h-screen">
+      <main className="flex-1 overflow-y-auto min-h-screen pb-20 lg:pb-0">
         {page === 'dashboard' && (
           <Dashboard
             playlists={playlists}
@@ -184,6 +185,13 @@ export default function App() {
           />
         )}
       </main>
+
+      {page !== 'practice' && (
+        <BottomNav
+          currentPage={page}
+          onNavigate={handleNavigate}
+        />
+      )}
     </div>
   );
 }

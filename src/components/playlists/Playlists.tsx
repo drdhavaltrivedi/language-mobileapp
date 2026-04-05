@@ -30,7 +30,7 @@ export default function Playlists({
   }
 
   return (
-    <div className="max-w-5xl mx-auto px-8 py-10">
+    <div className="max-w-5xl mx-auto px-4 sm:px-8 py-6 sm:py-10">
       <div className="flex items-center justify-between mb-8">
         <div>
           <h1 className="text-2xl font-bold text-slate-900">Playlists</h1>
@@ -62,7 +62,7 @@ export default function Playlists({
           </button>
         </div>
       ) : (
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {playlists.map((pl) => (
             <div
               key={pl.id}

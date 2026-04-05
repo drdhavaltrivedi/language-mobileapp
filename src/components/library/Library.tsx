@@ -66,7 +66,7 @@ export default function Library({ items, loading, onCreateItem, onUpdateItem, on
   }
 
   return (
-    <div className="max-w-5xl mx-auto px-8 py-10">
+    <div className="max-w-5xl mx-auto px-4 sm:px-8 py-6 sm:py-10">
       <div className="flex items-center justify-between mb-6">
         <div>
           <h1 className="text-2xl font-bold text-slate-900">Library</h1>
@@ -81,7 +81,7 @@ export default function Library({ items, loading, onCreateItem, onUpdateItem, on
         </button>
       </div>
 
-      <div className="flex gap-3 mb-6">
+      <div className="flex flex-col sm:flex-row gap-3 mb-6">
         <div className="relative flex-1">
           <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
           <input
@@ -92,29 +92,31 @@ export default function Library({ items, loading, onCreateItem, onUpdateItem, on
           />
         </div>
 
-        {usedLanguages.length > 1 && (
+        <div className="flex gap-2">
+          {usedLanguages.length > 1 && (
+            <select
+              value={filterLang}
+              onChange={(e) => setFilterLang(e.target.value)}
+              className="flex-1 sm:w-40 px-3.5 py-2.5 border border-slate-200 rounded-xl text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-sky-500 bg-white"
+            >
+              <option value="all">All languages</option>
+              {usedLanguages.map((l) => (
+                <option key={l.code} value={l.code}>{l.flag} {l.name}</option>
+              ))}
+            </select>
+          )}
+
           <select
-            value={filterLang}
-            onChange={(e) => setFilterLang(e.target.value)}
-            className="px-3.5 py-2.5 border border-slate-200 rounded-xl text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-sky-500 bg-white"
+            value={filterDiff}
+            onChange={(e) => setFilterDiff(e.target.value)}
+            className="flex-1 sm:w-40 px-3.5 py-2.5 border border-slate-200 rounded-xl text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-sky-500 bg-white"
           >
-            <option value="all">All languages</option>
-            {usedLanguages.map((l) => (
-              <option key={l.code} value={l.code}>{l.flag} {l.name}</option>
+            <option value="all">All levels</option>
+            {Object.entries(DIFFICULTY_LABELS).map(([val, label]) => (
+              <option key={val} value={val}>{label}</option>
             ))}
           </select>
-        )}
-
-        <select
-          value={filterDiff}
-          onChange={(e) => setFilterDiff(e.target.value)}
-          className="px-3.5 py-2.5 border border-slate-200 rounded-xl text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-sky-500 bg-white"
-        >
-          <option value="all">All levels</option>
-          {Object.entries(DIFFICULTY_LABELS).map(([val, label]) => (
-            <option key={val} value={val}>{label}</option>
-          ))}
-        </select>
+        </div>
       </div>
 
       {loading ? (
@@ -172,7 +174,7 @@ export default function Library({ items, loading, onCreateItem, onUpdateItem, on
                   </div>
                 </div>
 
-                <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity shrink-0">
+                <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity shrink-0">
                   <button
                     onClick={() => speak(item)}
                     className="p-2 text-slate-400 hover:text-sky-500 hover:bg-sky-50 rounded-lg transition-colors"
